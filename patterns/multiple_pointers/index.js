@@ -17,4 +17,5 @@ function sumZero(a, sum = 0) {
     if (result > sum) end--;
     if (result < sum) start++;
   }
+  return undefined;
 }
