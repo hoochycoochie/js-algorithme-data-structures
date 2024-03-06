@@ -125,12 +125,45 @@ class SinglyLinkedList {
 
     return true;
   }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index == 0) return !!this.unshift(val);
+    if (index == this.length) return !!this.push(val);
+    const pred_node = this.get(index - 1);
+    if (!pred_node) return false;
+    const post_node = pred_node.next;
+
+    const node = new Node(val);
+    pred_node.next = node;
+    node.next = post_node;
+
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index == 0) return this.shift();
+    if (index == this.length - 1) return this.pop();
+
+    const pred_node = this.get(index - 1);
+    const node_to_remove = pred_node.next;
+
+    pred_node.next = node_to_remove.next;
+
+    this.length--;
+    return node_to_remove;
+  }
 }
 
 const list = new SinglyLinkedList();
-list.push("HELLO");
-list.push("GOODBYE");
-list.push("HEY JOE");
-//console.log(JSON.stringify(list.pop(), null, 20));
-console.log(list.get(1));
-// console.log(JSON.stringify(list, null, 10));
+list.push(100);
+list.push(201);
+list.push(250);
+list.push(350);
+list.traverse();
+
+console.log(list.insert(1, 301));
+console.log("\n \n \n");
+list.traverse();
