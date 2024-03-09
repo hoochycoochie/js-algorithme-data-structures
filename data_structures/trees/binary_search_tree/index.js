@@ -82,6 +82,6 @@ bst.insert(2);
 bst.insert(7);
 bst.insert(13);
 bst.insert(11);
-person;
+
 bst.insert(16);
 console.dir(bst, { depth: null });
